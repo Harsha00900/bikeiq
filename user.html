@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeIQ</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #8de0d1, #b5f5ea);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: auto;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #111;
+            margin: 0 12px;
+            font-weight: 500;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 40px 0;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 60px;
+            font-style: italic;
+            color: #111;
+            margin-bottom: 15px;
+        }
+
+        .login-box {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            width: 220px;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #2e8b77;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .welcome {
+            margin-top: 20px;
+            font-size: 22px;
+            color: green;
+            font-weight: bold;
+        }
+
+        .error {
+            margin-top: 20px;
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+
+        .bike-container {
+            flex: 1;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .bike-img {
+            width: 400px;
+            max-width: 100%;
+            border-radius: 20px;
+            animation: floatBike 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBike {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media(max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            button {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <nav>
+            <div class="logo">🏍 BikeIQ</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Bikes</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+
+            <div class="hero-text">
+                <p>Premium Bike Experience</p>
+                <h1>RIDING</h1>
+                <p>Ride smart with BikeIQ premium platform.</p>
+
+                <div class="login-box">
+                    <input type="text" id="username" placeholder="Enter Your Name">
+                    <button onclick="showWelcome()">Enter</button>
+                </div>
+
+                <div class="welcome" id="welcomeMsg"></div>
+                <div class="error" id="errorMsg"></div>
+            </div>
+
+            <div class="bike-container">
+                <img src="https://wirecase3d.com/cdn/shop/products/bike1.jpg?v=1532863204&width=823" alt="Bike" class="bike-img">
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function showWelcome() {
+            let name = document.getElementById("username").value.trim();
+
+            // letters and spaces only
+            let regex = /^[A-Za-z ]+$/;
+
+            document.getElementById("welcomeMsg").innerText = "";
+            document.getElementById("errorMsg").innerText = "";
+
+            if (name === "") {
+                document.getElementById("errorMsg").innerText = "Please enter your name";
+            }
+            else if (!regex.test(name)) {
+                document.getElementById("errorMsg").innerText = "Error: Only letters are allowed!";
+            }
+            else {
+                document.getElementById("welcomeMsg").innerText = "Welcome, " + name + "!";
+            }
+        }
+    </script>
+
+</body>
+</html>

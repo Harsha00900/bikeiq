@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BikeIQ Admin Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#97d8c4;
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:rgba(255,255,255,0.3);
+    backdrop-filter:blur(20px);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.stats{
+    text-align:center;
+    font-size:24px;
+    margin-bottom:30px;
+    font-weight:bold;
+}
+
+.user-card{
+    background:rgba(255,255,255,0.5);
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.user-card b{
+    font-size:20px;
+}
+
+small{
+    color:#555;
+}
+
+.clear-btn{
+    display:block;
+    margin:20px auto;
+    padding:14px 25px;
+    border:none;
+    border-radius:20px;
+    background:red;
+    color:white;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🔐 Admin Dashboard</h1>
+
+    <div class="stats">
+        Total Logins: <span id="count">0</span>
+    </div>
+
+    <div id="users"></div>
+
+    <button class="clear-btn" onclick="clearUsers()">Clear All Users</button>
+
+</div>
+
+<script>
+let users = JSON.parse(localStorage.getItem('bikeiq_users')) || [];
+
+document.getElementById('count').innerText = users.length;
+
+let userDiv = document.getElementById('users');
+
+function renderUsers(){
+    userDiv.innerHTML = "";
+    document.getElementById('count').innerText = users.length;
+
+    users.forEach(user=>{
+        let div = document.createElement('div');
+        div.className = "user-card";
+        div.innerHTML = `<b>${user.name}</b><br><small>${user.time}</small>`;
+        userDiv.appendChild(div);
+    });
+}
+
+function clearUsers(){
+    if(confirm("Are you sure to clear all users?")){
+        localStorage.removeItem('bikeiq_users');
+        users = [];
+        renderUsers();
+    }
+}
+
+renderUsers();
+</script>
+
+</body>
+</html>

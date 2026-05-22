@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#97d8c4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:90%;
+    max-width:500px;
+    background:rgba(255,255,255,0.3);
+    backdrop-filter:blur(20px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+h1{
+    margin-bottom:30px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+button{
+    padding:14px 30px;
+    border:none;
+    border-radius:20px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+.error{
+    color:red;
+    margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🔐 Admin Login</h1>
+
+    <input type="password" id="password" placeholder="Enter admin password">
+    <button onclick="checkLogin()">Login</button>
+
+    <div id="error" class="error"></div>
+</div>
+
+<script>
+function checkLogin(){
+    let password = document.getElementById('password').value;
+
+    if(password === "admin123"){
+        window.location.href = "admin.html";
+    } else {
+        document.getElementById('error').innerText = "Wrong password!";
+    }
+}
+</script>
+
+</body>
+</html>
